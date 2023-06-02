@@ -88,27 +88,23 @@ namespace Series
         public static void CheapTravel()
         {
             string[] Input = Console.ReadLine().Split();
-            int Result = 0;
+            List<int> Result = new List<int>();
             int FullSingleRide = FullSingleRidePrice(int.Parse(Input[0]), int.Parse(Input[2]));
-            int FullGroup = FullGroupNoRemainder(int.Parse(Input[0]), int.Parse(Input[1]), int.Parse(Input[2]));
+            int FullGroup = FullGroupNoRemainder(int.Parse(Input[0]), int.Parse(Input[1]), int.Parse(Input[3]));
             int MixedRide = MixedRidePrice(int.Parse(Input[0]), int.Parse(Input[1]), int.Parse(Input[2]), int.Parse(Input[3]));
 
-            //Compare all price to find minimum price for ride
-            if((FullSingleRide<FullGroup) || (FullSingleRide<MixedRide))
+            Result.Add(FullSingleRide);
+            Result.Add(FullGroup);
+            Result.Add(MixedRide);
+            
+            if(FullGroup<MixedRide)
             {
-                Result = FullSingleRide;
-                
-            }
-            else if((MixedRide<FullSingleRide) || (MixedRide<FullGroup))
-            {
-                Result = MixedRide;
+                Console.WriteLine(FullGroup);
             }
             else
             {
-                Result = FullGroup;
-            }
-
-            Console.WriteLine(Result);
+                Console.WriteLine(Result.AsEnumerable().Min());
+            }          
         }
         private static int FullSingleRidePrice(int NoOfRounds, int PerRidePrice)
         {
@@ -116,12 +112,12 @@ namespace Series
         }
         private static int FullGroupNoRemainder(int n, int m, int b)
         {
-            int Count = 0;
+            int RideCount = 0;
             int Result = 0;
-            while(n>Count)
+            while(n>RideCount)
             {
-                Result += m* b;
-                Count += m;
+                Result += b;
+                RideCount += m;
             }
             return Result;
         }
@@ -141,7 +137,7 @@ namespace Series
                     Ridecount += 1;
                     Result += a;
                 }
-            }
+            }            
             return Result;
         }
         #endregion
