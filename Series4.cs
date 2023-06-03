@@ -75,7 +75,6 @@ namespace Series
             }
             Console.WriteLine(Largest);
         }
-        #endregion
 
         public static void Product_Max1()
         {
@@ -93,7 +92,7 @@ namespace Series
                 Console.WriteLine(x * y);
             }
         }
-
+        #endregion
 
         #region Smartphone Addiction
         public static void SmartphoneAddiction()
@@ -120,8 +119,11 @@ namespace Series
         #endregion
 
         #region Duodecim Ferra
-        public static long Combinations(long n, long k)
+        public static long Combinations()
         {
+            long n = Convert.ToInt64(Console.ReadLine());
+            n = -1;
+            long k = 11;
             if (n < k)
                 return 0;
 
